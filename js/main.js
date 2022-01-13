@@ -210,3 +210,17 @@ textBlock(".testim-text.one", ".testim-text.two");
 
 document.querySelector("footer .footer h5 b").innerHTML =
   new Date().getFullYear();
+
+// scroll top go
+const scrollTopIcon = document.querySelector(".fixd-icon");
+
+window.onscroll = () => {
+  if (window.scrollY > 500) {
+    scrollTopIcon.classList.remove("iconbottom");
+  } else if (window.scrollY < 500) {
+    scrollTopIcon.classList.add("iconbottom");
+  }
+};
+scrollTopIcon.addEventListener("click", () => {
+  window.scrollTo(0, 0);
+});
