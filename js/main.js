@@ -5,7 +5,6 @@ const navHeight = navBar.getBoundingClientRect().height;
 const body = document.querySelector("body");
 window.addEventListener("scroll", () => {
   const scrollHeight = window.pageYOffset;
-  console.log();
   if (scrollHeight > navHeight + 100) {
     navBar.classList.add("fix-nav");
   } else {
@@ -37,12 +36,15 @@ function myFunc(itemClick, itemLeft, itemRight) {
   const goClick = document.querySelector(itemClick);
   const goLeft = document.querySelector(itemLeft);
   const goRight = document.querySelector(itemRight);
+  const body = document.querySelector("body");
 
   goClick.addEventListener("click", () => {
     goLeft.classList.add("left");
+    body.classList.add("hidden");
   });
   goRight.addEventListener("click", () => {
     goLeft.classList.remove("left");
+    body.classList.remove("hidden");
   });
 }
 
@@ -52,13 +54,16 @@ function menuBlock(menu, buttonOpen, buttonClose) {
   const goMenu = document.querySelector(menu);
   const goButtonOpen = document.querySelector(buttonOpen);
   const goButtonClose = document.querySelector(buttonClose);
+  const body = document.querySelector("body");
 
   goButtonOpen.addEventListener("click", () => {
     goMenu.classList.add("block");
+    body.classList.add("hidden");
   });
 
   goButtonClose.addEventListener("click", () => {
     goMenu.classList.remove("block");
+    body.classList.remove("hidden");
   });
 }
 
@@ -111,56 +116,97 @@ iconOne.addEventListener("click", () => {
   sliderTwoNone(sliderTwo, iconTwo);
 });
 
-// const myInterval = setInterval(myTimer, 3000);
+var swiper = new Swiper(".mySwiper.boxs", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  slidesPerGroup: 1,
+  loop: true,
+  loopFillGroupWithBlank: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 40,
+    },
+    994: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+  },
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
+});
 
-// function myTimer() {
+var swiper2 = new Swiper(".mySwiper.logo-partner", {
+  slidesPerView: 6,
+  spaceBetween: 30,
+  slidesPerGroup: 1,
+  loop: true,
+  loopFillGroupWithBlank: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 40,
+    },
+    994: {
+      slidesPerView: 6,
+      spaceBetween: 50,
+    },
+  },
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
+});
 
-// }
+const greyYell = document.querySelectorAll(".greyYell");
+const img = document.querySelector(".project .box");
+const swiperWrapper = document.querySelector(".swiper-wrapper");
 
-// function myStop() {
-//   clearInterval(myInterval);
-// }
+greyYell.forEach((item) => (item.style.width = img.style.width));
 
-// while (0 < 100) {
-//   setTimeout(() => {
-//     console.log(1);
-//   }, 1000);
-// }
+function textBlock(itemone, itemtwo) {
+  const itemOne = document.querySelector(itemone);
+  const itemTwo = document.querySelector(itemtwo);
+  const leftIcon = document.querySelector(".icon .far.fa-arrow-left");
+  const rightIcon = document.querySelector(".icon .far.fa-arrow-right");
 
-// var timeInterval = 1000;
-// var automate = true;
+  leftIcon.addEventListener("click", () => {
+    itemOne.classList.toggle("block");
+    itemTwo.classList.toggle("block");
+  });
+  rightIcon.addEventListener("click", () => {
+    itemOne.classList.toggle("block");
+    itemTwo.classList.toggle("block");
+  });
+}
 
-// function navigateSlider() {
-//   if (automate) {
-//     setInterval(function () {
-//       let num = 1;
-//       if (num % 2 == 1) {
-//         sliderOneNone(sliderOne, iconOne);
-//         sliderTwoBlock(sliderTwo, iconTwo);
-//         num++;
-//       } else {
-//         sliderOneNone(sliderOne, iconOne);
-//         sliderTwoBlock(sliderTwo, iconTwo);
-//         num++;
-//         navigateSlider();
-//       }
-//     }, timeInterval);
-//   }
-// }
-// navigateSlider();
-// let num = 1;
+textBlock(".testim-text.one", ".testim-text.two");
 
-// function autoPlay() {
-//   if (num % 2 > 1) {
-//     sliderOneNone(sliderOne, iconOne);
-//     sliderTwoBlock(sliderTwo, iconTwo);
-//     num++;
-//   } else {
-//     sliderOneNone(sliderOne, iconOne);
-//     sliderTwoBlock(sliderTwo, iconTwo);
-//     num++;
-//     navigateSlider();
-//   }
-// }
-
-// setInterval(autoPlay(), 3000);
+document.querySelector("footer .footer h5 b").innerHTML =
+  new Date().getFullYear();
